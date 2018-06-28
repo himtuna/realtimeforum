@@ -8,6 +8,17 @@ use App\User;
 class Question extends Model
 {
     //
+    protected $fillable = ['title','body','slug','category_id','user_id'];
+
+    public function getRouteKeyname(    )
+    {
+        return 'slug';
+    }
+    public function getPathAttribute()
+    {
+        return asset("api/question/$this->slug");
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
