@@ -41,7 +41,7 @@ class ReplyController extends Controller
     {
         //
         $reply = $question->replies()->create($request->all());
-        return response(['reply' => $reply ],Response::HTTP_CREATED);
+        return response(['reply' => new ReplyResource($reply) ],Response::HTTP_CREATED);
     }
 
     /**
@@ -53,8 +53,8 @@ class ReplyController extends Controller
     public function show(Question $question, Reply $reply)
     {
         //
-        return $reply;
-        // return new ReplyResource($reply);
+        // return $reply;
+        return new ReplyResource($reply);
     }
 
     /**
